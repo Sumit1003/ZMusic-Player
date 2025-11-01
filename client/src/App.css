@@ -1,0 +1,345 @@
+/* =========================================================
+   🟣 Z Music — Global Styles (index.css / globals.css)
+   Cleaned, Responsive, and Optimized for Glass UI + Tailwind
+   ========================================================= */
+
+/* Tailwind Directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================================================
+   🔹 Root Setup
+   ========================================================= */
+:root {
+  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --blur: 20px;
+  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  min-height: 100vh;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+  color: white;
+  scroll-behavior: smooth;
+  transition: background 0.5s ease;
+}
+
+#root {
+  max-width: 1580px;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+}
+
+/* =========================================================
+   🧊 Glass Effects
+   ========================================================= */
+.glass-effect {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow-soft);
+  transition: all 0.3s ease;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border-radius: 1rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.glass-effect-light {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* =========================================================
+   🖱 Scrollbar
+   ========================================================= */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* =========================================================
+   🔘 Buttons
+   ========================================================= */
+.btn-primary {
+  @apply px-5 py-2 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white font-medium hover:opacity-90 transition-all duration-300 shadow-md;
+}
+
+.btn-secondary {
+  @apply px-5 py-2 rounded-xl bg-white/10 text-gray-200 font-medium hover:bg-white/20 border border-white/10 transition-all;
+}
+
+/* =========================================================
+   🎚 Sliders (Music Player)
+   ========================================================= */
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.slider:focus {
+  outline: none;
+}
+
+.slider-vertical {
+  writing-mode: bt-lr;
+  height: 100px;
+}
+
+/* =========================================================
+   ✨ Texts & Gradients
+   ========================================================= */
+.text-gradient {
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.shadow-glow {
+  box-shadow: 0 0 25px rgba(168, 85, 247, 0.5);
+}
+
+/* =========================================================
+   🎵 Animations
+   ========================================================= */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.float-animation { animation: float 3s ease-in-out infinite; }
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(168, 85, 247, 0.4); }
+  50% { box-shadow: 0 0 40px rgba(168, 85, 247, 0.8); }
+}
+.pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+
+@keyframes spin-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.spin-slow { animation: spin-slow 3s linear infinite; }
+
+/* =========================================================
+   📱 Responsive Design
+   ========================================================= */
+@media (max-width: 1024px) {
+  #root {
+    padding: 0 1rem;
+  }
+  .glass-effect {
+    backdrop-filter: blur(15px);
+  }
+}
+
+@media (max-width: 768px) {
+  .glass-effect {
+    backdrop-filter: blur(10px);
+    border-radius: 0.75rem;
+  }
+  .btn-primary,
+  .btn-secondary {
+    @apply text-sm px-4 py-2;
+  }
+}
+
+/* =========================================================
+   🔍 Inputs, Focus, and Accessibility
+   ========================================================= */
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid rgba(168, 85, 247, 0.8);
+  outline-offset: 2px;
+}
+
+* {
+  transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+}
+
+::selection {
+  background: rgba(168, 85, 247, 0.35);
+  color: white;
+}
+
+/* =========================================================
+   🖼 Image & Element Optimizations
+   ========================================================= */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  border-radius: 0.5rem;
+}
+
+.no-print {
+  display: block;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* Add to your index.css file */
+
+/* Song Cards Grid System */
+.songs-grid-container {
+  @apply w-full overflow-visible;
+}
+
+.songs-grid {
+  @apply grid grid-cols-1 gap-4 p-4;
+}
+
+/* Mobile First Approach */
+@media (max-width: 639px) {
+  .songs-grid {
+    @apply grid-cols-2 gap-3 p-3;
+  }
+}
+
+/* Tablet */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .songs-grid {
+    @apply grid-cols-3 gap-4 p-4;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .songs-grid {
+    @apply grid-cols-4 gap-6 p-6;
+  }
+}
+
+/* Large Desktop */
+@media (min-width: 1536px) {
+  .songs-grid {
+    @apply grid-cols-5 gap-6 p-6;
+  }
+}
+
+/* Song Card Specific Styles */
+.song-card-hover {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.song-card-hover:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+    0 20px 40px rgba(139, 92, 246, 0.15),
+    0 10px 20px rgba(236, 72, 153, 0.1);
+}
+
+/* Ensure 8 cards per page with proper spacing */
+.songs-page {
+  min-height: calc(100vh - 200px);
+  display: flex;
+  flex-direction: column;
+}
+
+.songs-list {
+  flex: 1;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+/* Pagination styles */
+.pagination-container {
+  @apply flex justify-center items-center space-x-2 py-6 border-t border-white/10 mt-8;
+}
+
+.pagination-button {
+  @apply glass-effect px-4 py-2 rounded-xl text-white font-medium 
+         transition-all duration-300 hover:bg-white/10 
+         disabled:opacity-50 disabled:cursor-not-allowed
+         min-w-[44px] min-h-[44px] flex items-center justify-center;
+}
+
+.pagination-button.active {
+  @apply bg-gradient-to-r from-purple-500 to-pink-500 text-white;
+}
+
+/* Loading states */
+.songs-loading {
+  @apply grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4;
+}
+
+.song-card-skeleton {
+  @apply glass-effect rounded-2xl p-4 animate-pulse;
+}
+
+.song-image-skeleton {
+  @apply w-full aspect-square bg-gray-600 rounded-xl mb-4;
+}
+
+.song-text-skeleton {
+  @apply h-4 bg-gray-600 rounded mb-2;
+}
+
+.song-text-skeleton.short {
+  @apply w-3/4;
+}
+
+.song-text-skeleton.medium {
+  @apply w-1/2;
+}
+
+/* Empty state */
+.songs-empty {
+  @apply flex flex-col items-center justify-center py-16 text-center;
+}
+
+.songs-empty-icon {
+  @apply text-6xl mb-4 opacity-50;
+}
+
+.songs-empty-text {
+  @apply text-gray-400 text-lg mb-2;
+}
+
+.songs-empty-subtext {
+  @apply text-gray-500 text-sm;
+}

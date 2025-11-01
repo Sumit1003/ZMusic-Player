@@ -1,0 +1,275 @@
+/* -------------------------------------------------------------------------- */
+/* ✨ FONT IMPORT + BASE TAILWIND                                             */
+/* -------------------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* -------------------------------------------------------------------------- */
+/* 🎨 ROOT VARIABLES + COLOR SYSTEM                                           */
+/* -------------------------------------------------------------------------- */
+:root {
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* 🎨 Color Palette */
+  --color-primary: 139 92 246;
+  --color-secondary: 236 72 153;
+  --color-accent: 34 197 94;
+  --color-background: 8 8 12;
+  --color-surface: 18 18 24;
+  --color-surface-light: 38 38 48;
+  --color-text-primary: 255 255 255;
+  --color-text-secondary: 156 163 175;
+  --color-text-muted: 107 114 128;
+
+  /* 📐 Layout Variables */
+  --sidebar-mobile-width: 5rem;
+  --sidebar-desktop-width: 16rem;
+  --sidebar-collapsed-width: 5rem;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 🧩 BASE STYLES                                                            */
+/* -------------------------------------------------------------------------- */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, rgb(8, 8, 12), rgb(18, 18, 28));
+    color: rgb(var(--color-text-primary));
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  #root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ✨ Subtle glowing background pattern */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(
+        circle at 25% 25%,
+        rgba(139, 92, 246, 0.08),
+        transparent 50%
+      ),
+      radial-gradient(circle at 75% 75%, rgba(236, 72, 153, 0.08), transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  /* Focus Rings */
+  *:focus-visible {
+    outline: 2px solid rgb(var(--color-primary));
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background-color: rgb(var(--color-primary) / 0.4);
+    color: white;
+  }
+
+  /* Universal Scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(139, 92, 246, 0.5) transparent;
+  }
+
+  *::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+      135deg,
+      rgb(var(--color-primary)),
+      rgb(var(--color-secondary))
+    );
+    border-radius: 10px;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+      135deg,
+      rgb(149, 102, 255),
+      rgb(246, 82, 163)
+    );
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 💎 COMPONENT STYLES (Glass, Buttons, Layout)                              */
+/* -------------------------------------------------------------------------- */
+@layer components {
+  /* 🧊 Glass Morphism */
+  .glass-effect {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.05)
+    );
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 1rem;
+  }
+
+  .glass-card {
+    @apply glass-effect transition-all duration-300 hover:bg-white/10 hover:border-white/20;
+  }
+
+  /* 🎛 Buttons */
+  .btn-primary {
+    @apply bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold 
+           py-3 px-4 rounded-xl transition-all duration-300 
+           hover:from-purple-600 hover:to-pink-600 
+           hover:scale-105 active:scale-95 shadow-lg;
+  }
+
+  .btn-secondary {
+    @apply glass-effect text-white font-medium py-3 px-4 rounded-xl 
+           transition-all duration-300 hover:bg-white/15 hover:scale-105 
+           active:scale-95 border border-white/10;
+  }
+
+  /* 📱 Sidebar */
+  .sidebar-mobile {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--sidebar-mobile-width);
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 50;
+  }
+
+  .sidebar-desktop {
+    @apply fixed top-0 left-0 h-screen z-50;
+    width: var(--sidebar-collapsed-width);
+    @apply bg-gradient-to-b from-gray-900/60 to-black/80 backdrop-blur-lg border-r border-white/10;
+    transition: width 0.3s ease;
+  }
+
+  .sidebar-desktop.expanded {
+    width: var(--sidebar-desktop-width);
+  }
+
+  /* 🎧 Music Player */
+  .music-player {
+    @apply fixed bottom-0 left-0 right-0 z-50 glass-effect border-t border-white/10 px-6 py-4;
+    transition: all 0.3s ease;
+  }
+
+  @media (min-width: 768px) {
+    .music-player {
+      margin-left: var(--sidebar-collapsed-width);
+      width: calc(100% - var(--sidebar-collapsed-width));
+    }
+    .music-player.expanded {
+      margin-left: var(--sidebar-desktop-width);
+      width: calc(100% - var(--sidebar-desktop-width));
+    }
+  }
+
+  /* 🔊 Wave Animation */
+  .wave-animation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+  }
+
+  .wave-bar {
+    width: 4px;
+    height: 12px;
+    background: linear-gradient(to top, #8b5cf6, #ec4899);
+    border-radius: 2px;
+    animation: wave 1.2s ease-in-out infinite;
+  }
+
+  .wave-bar:nth-child(2) { animation-delay: 0.1s; }
+  .wave-bar:nth-child(3) { animation-delay: 0.2s; }
+  .wave-bar:nth-child(4) { animation-delay: 0.3s; }
+  .wave-bar:nth-child(5) { animation-delay: 0.4s; }
+
+  @keyframes wave {
+    0%, 60%, 100% { transform: scaleY(0.6); }
+    30% { transform: scaleY(1); }
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* ⚙️ UTILITIES & ACCESSIBILITY                                               */
+/* -------------------------------------------------------------------------- */
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .mobile-optimized {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    user-select: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 🖥️ RESPONSIVE ADAPTATIONS                                                 */
+/* -------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+  .desktop-only {
+    display: none !important;
+  }
+
+  .music-player {
+    margin-left: var(--sidebar-mobile-width);
+    width: calc(100% - var(--sidebar-mobile-width));
+  }
+}
+
+@media (min-width: 768px) {
+  .mobile-only {
+    display: none !important;
+  }
+}
