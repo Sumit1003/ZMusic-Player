@@ -17,7 +17,7 @@ const SongCard = ({ song, index, showAlbum = true, highlightQuery = "" }) => {
   const getImageSource = () => {
     if (!song?.image) return null;
     if (song.image.startsWith("http")) return song.image;
-    const baseUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
+    const baseUrl = import.meta.env.VITE_API_URL || "https://z-music-uq5m.onrender.com";
     return `${baseUrl}/${song.image.replace(/^\/+/, "")}`;
   };
 

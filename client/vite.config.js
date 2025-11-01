@@ -17,7 +17,7 @@ export default defineConfig(({ mode }) => {
       // 🧠 Smart proxy setup for backend API requests
       proxy: {
         '/api': {
-          target: env.VITE_API_URL || 'http://localhost:5000',
+          target: env.VITE_API_URL || 'https://z-music-uq5m.onrender.com',
           changeOrigin: true,
           secure: false,
           rewrite: (path) => path.replace(/^\/api/, '/api'), // keep endpoint structure

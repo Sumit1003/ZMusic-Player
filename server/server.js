@@ -24,8 +24,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const NODE_ENV = process.env.NODE_ENV || "development";
 const FRONTEND_ORIGINS = [
-  "http://localhost:5173",
-  "http://127.0.0.1:5173",
+  "https://zify.onrender.com",
   process.env.FRONTEND_URL // ✅ optional for production
 ].filter(Boolean);
 
@@ -207,9 +206,9 @@ const startServer = async () => {
 🎵  Z-Music API Server Running!
 📍  Port: ${PORT}
 🌍  Env: ${NODE_ENV}
-📚  API: http://localhost:${PORT}/api/songs
-❤️  Health: http://localhost:${PORT}/health
-🔧  CORS: http://localhost:${PORT}/api/test-cors
+📚  API: https://z-music-uq5m.onrender.com/api/songs
+❤️  Health: https://z-music-uq5m.onrender.com/health
+🔧  CORS: https://z-music-uq5m.onrender.com/api/test-cors
       `);
     });
   } catch (error) {

@@ -42,7 +42,7 @@ const Artists = () => {
 
   /* 🌍 Enhanced Backend URL helper */
   const getBackendUrl = (path, fallbackSeed = "default") => {
-    const base = import.meta.env.VITE_API_URL || "http://localhost:5000";
+    const base = import.meta.env.VITE_API_URL || "https://z-music-uq5m.onrender.com";
     if (!path) return `https://picsum.photos/seed/${fallbackSeed}/300/300`;
     if (path.startsWith("http")) return path;
     return `${base}/${path.replace(/^\/+/, "")}`;

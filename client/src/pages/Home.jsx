@@ -61,7 +61,7 @@ const Home = () => {
   const [showQuickStats, setShowQuickStats] = useState(true);
 
   const navigate = useNavigate();
-  const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000";
+  const API_BASE = import.meta.env.VITE_API_URL || "https://z-music-uq5m.onrender.com";
 
   // Helper to create unique keys
   const getUniqueKey = (song, index) => {

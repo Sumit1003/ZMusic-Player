@@ -47,7 +47,7 @@ const Sidebar = () => {
   /* 🌍 Resolve image URLs */
   const getBackendUrl = (path) => {
     if (!path) return "";
-    const base = import.meta.env.VITE_API_URL || "http://localhost:5000";
+    const base = import.meta.env.VITE_API_URL || "https://z-music-uq5m.onrender.com";
     if (path.startsWith("http")) return path;
     return `${base}/${path.replace(/^\/+/, "")}`;
   };

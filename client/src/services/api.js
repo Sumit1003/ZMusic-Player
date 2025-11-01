@@ -1,5 +1,5 @@
 // /services/api.js
-const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+const API_BASE_URL = import.meta.env.VITE_API_URL || "https://z-music-uq5m.onrender.com";
 
 class ApiService {
   constructor(baseUrl = API_BASE_URL) {

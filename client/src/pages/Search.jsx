@@ -59,7 +59,7 @@ const SearchPage = () => {
   const getImageUrl = (img, fallbackSeed = "default") => {
     if (!img) return `https://picsum.photos/seed/${fallbackSeed}/200/200`;
     if (img.startsWith("http")) return img;
-    const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000";
+    const API_BASE = import.meta.env.VITE_API_URL || "https://z-music-uq5m.onrender.com";
     return img.startsWith("/") ? `${API_BASE}${img}` : `${API_BASE}/${img}`;
   };
 

@@ -43,7 +43,7 @@ const Library = () => {
   const [showFilters, setShowFilters] = useState(false);
   const [selectedSongs, setSelectedSongs] = useState(new Set());
 
-  const backendUrl = import.meta.env.VITE_API_URL || "http://localhost:5000";
+  const backendUrl = import.meta.env.VITE_API_URL || "https://z-music-uq5m.onrender.com";
 
   // 🧩 Responsive configuration
   useEffect(() => {
